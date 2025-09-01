@@ -1,4 +1,4 @@
-from modules.cli_select import get_location_type, get_manual_location
+from modules.cli_select import get_location_type, get_user_input
 from modules.geocoder import get_custom_location, get_my_location, get_weather, format_weather
 
 def main():
@@ -11,8 +11,8 @@ def main():
         current_weather = weather['current']
         print(format_weather(current_weather, (city, country)))
     else:
-        manual_input = get_manual_location()
-        location = get_custom_location(manual_input)
+        user_input = get_user_input()
+        location = get_custom_location(user_input)
 
         print(location)
 

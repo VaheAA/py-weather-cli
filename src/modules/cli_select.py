@@ -17,7 +17,7 @@ def get_location_type():
     return "My location"
 
 
-def get_manual_location():
+def get_user_input():
     questions = [
         inquirer.Text(
             "city",
