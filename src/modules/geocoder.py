@@ -8,9 +8,13 @@ def get_my_location():
     return g.latlng, g.city, g.country
 
 def get_custom_location(input):
-    g = geocoder.osm(input)
 
-    return g
+    headers = {
+        'User-Agent': 'py-weather-cli (https://github.com/VaheAA/py-weather-cli)'
+    }
+    g = geocoder.osm(input, headers=headers)
+
+    return g.latlng, g.city, g.country
 
 def get_weather(lat,lon):
     r = requests.get(f"{OPEN_WEATHER_API_URL}?lat={lat}&lon={lon}&appid={OPEN_WEATHER_API_KEY}&units=metric&exclude=hourly,daily,minutely")
@@ -28,3 +32,8 @@ def format_weather(weather, location):
     weather_str += f"Wind speed: {current_weather['wind_speed']} m/s\n"
 
     return weather_str
+
+def combine_weather(lat, lon, city, country):
+    weather = get_weather(lat, lon)
+    current_weather = weather['current']
+    return format_weather(current_weather, (city, country))
