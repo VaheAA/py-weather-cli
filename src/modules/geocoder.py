@@ -1,6 +1,6 @@
 import requests
 import geocoder
-from modules.settings.settings import OPEN_WEATHER_API_KEY, OPEN_WEATHER_API_URL
+from modules.settings.settings import GITHUB_USER_NAME, OPEN_WEATHER_API_KEY, OPEN_WEATHER_API_URL
 
 g = geocoder.ip('me')
 
@@ -10,7 +10,7 @@ def get_my_location():
 def get_custom_location(input):
 
     headers = {
-        'User-Agent': 'py-weather-cli (https://github.com/VaheAA/py-weather-cli)'
+        'User-Agent': f'py-weather-cli (https://github.com/{GITHUB_USER_NAME}/py-weather-cli)'
     }
     g = geocoder.osm(input, headers=headers)
 
